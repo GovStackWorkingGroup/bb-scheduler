@@ -17,10 +17,6 @@
     "description" : "Find out more about scheduler",
     "url" : "https://www.govstack.global/"
   },
-  "servers" : [ {
-    "url" : "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/SchedulerBB/creg/",
-    "description" : "Scheduler BB Security server"
-  } ],
   "tags" : [ {
     "name" : "event",
     "description" : "event management API"
@@ -28,8 +24,8 @@
     "name" : "entity",
     "description" : "entity management API"
   }, {
-    "name" : "alert_schedule",
-    "description" : "alert_schedule management  API"
+    "name" : "alertSchedule",
+    "description" : "alertSchedule management  API"
   }, {
     "name" : "resource",
     "description" : "resource  management API"
@@ -53,9 +49,9 @@
     "/event/new" : {
       "post" : {
         "tags" : [ "event" ],
-        "summary" : "create a new event, in event_list with given event_details, returns new event id or failure error code",
+        "summary" : "create a new event, in eventList with given eventDetails, returns new event id or failure error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -65,7 +61,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -75,13 +71,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/event_new_qry"
+            "$ref" : "#/components/schemas/eventNewQuery"
           }
         } ],
         "responses" : {
@@ -92,7 +88,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created event",
-                  "example" : "event_id:12345"
+                  "example" : "eventId:12345"
                 }
               }
             }
@@ -115,9 +111,9 @@
     "/event/modifications" : {
       "put" : {
         "tags" : [ "event" ],
-        "summary" : "changes values of specific details (as given by event_details) of given event (selected by event_filter)in event_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by eventDetails) of given event (selected by eventFilter) in eventList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -127,7 +123,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -137,7 +133,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "event_id",
+          "name" : "eventId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -147,13 +143,13 @@
             "example" : "12345"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/event_modify_qry"
+            "$ref" : "#/components/schemas/eventModifyQuery"
           }
         } ],
         "responses" : {
@@ -178,9 +174,9 @@
     "/event" : {
       "delete" : {
         "tags" : [ "event" ],
-        "summary" : "delete a predefined event in event_list and returns success or error code",
+        "summary" : "delete a predefined event in eventList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -190,7 +186,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -200,7 +196,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "event_id",
+          "name" : "eventId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -229,12 +225,12 @@
         }
       }
     },
-    "/event/list_details" : {
+    "/event/listDetails" : {
       "get" : {
         "tags" : [ "event" ],
-        "summary" : "get list of events filetered by criteria in event_filter and return info specified by event_details_required with success or error code",
+        "summary" : "get list of events filetered by criteria in eventFilter and return info specified by eventDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -244,7 +240,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -254,24 +250,24 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/event_get_details_qry"
+            "$ref" : "#/components/schemas/eventGetDetailsQuery"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "success,event_list",
+            "description" : "success,eventList",
             "content" : {
               "json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/event_list"
+                    "$ref" : "#/components/schemas/eventList"
                   }
                 }
               }
@@ -295,9 +291,9 @@
     "/appointment/new" : {
       "post" : {
         "tags" : [ "appointment" ],
-        "summary" : "create a new appointment, in appointment_list with given appointment_details, returns new appointment id or failure error code",
+        "summary" : "create a new appointment, in appointmentList with given appointmentDetails, returns new appointment id or failure error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -307,7 +303,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -317,13 +313,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/appointment_new_qry"
+            "$ref" : "#/components/schemas/appointmentNewQuery"
           }
         } ],
         "responses" : {
@@ -334,7 +330,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created appointment",
-                  "example" : "[Event_id:12345,appointment_id:1]"
+                  "example" : "[eventId:12345,appointmentId:1]"
                 }
               }
             }
@@ -357,9 +353,9 @@
     "/appointment/modifications" : {
       "put" : {
         "tags" : [ "appointment" ],
-        "summary" : "changes values of specific details (as given by appointment_details) of given appointment (selected by appointment_filter)in appointment_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by appointmentDetails) of given appointment (selected by appointmentFilter)in appointmentList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -369,7 +365,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -379,7 +375,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "appointment_id",
+          "name" : "appointmentId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -389,13 +385,13 @@
             "example" : "1"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/appointment_modify_qry"
+            "$ref" : "#/components/schemas/appointmentModifyQuery"
           }
         } ],
         "responses" : {
@@ -420,9 +416,9 @@
     "/appointment" : {
       "delete" : {
         "tags" : [ "appointment" ],
-        "summary" : "delete a predefined appointment in appointment_list and returns success or error code",
+        "summary" : "delete a predefined appointment in appointmentList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -432,7 +428,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -442,7 +438,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "appointment_id",
+          "name" : "appointmentId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -471,12 +467,12 @@
         }
       }
     },
-    "/appointment/list_details" : {
+    "/appointment/listDetails" : {
       "get" : {
         "tags" : [ "appointment" ],
-        "summary" : "get list of appointments filetered by criteria in appointment_filter and return info specified by appointment_details_required with success or error code",
+        "summary" : "get list of appointments filetered by criteria in appointmentFilter and return info specified by appointmentDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -486,7 +482,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -496,24 +492,24 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/appointment_get_details_qry"
+            "$ref" : "#/components/schemas/appointmentGetDetailsQuery"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "success,appointment_list",
+            "description" : "success,appointmentList",
             "content" : {
               "json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/appointment_list"
+                    "$ref" : "#/components/schemas/appointmentList"
                   }
                 }
               }
@@ -537,9 +533,9 @@
     "/entity/new" : {
       "post" : {
         "tags" : [ "entity" ],
-        "summary" : "create a new entity, in entity_list with given entity_details, returns new entity id or entity error code",
+        "summary" : "create a new entity, in entityList with given entityDetails, returns new entity id or entity error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -549,7 +545,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -559,13 +555,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/entity_new_qry"
+            "$ref" : "#/components/schemas/entityNewQuery"
           }
         } ],
         "responses" : {
@@ -576,7 +572,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created entity",
-                  "example" : "entity_name:xyz hospital,entity_id:67890"
+                  "example" : "entityName:xyz hospital,entityId:67890"
                 }
               }
             }
@@ -599,9 +595,9 @@
     "/entity/modifications" : {
       "put" : {
         "tags" : [ "entity" ],
-        "summary" : "changes values of specific details (as given by entity_details) of given entity (selected by entity_filter)in entity_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by entityDetails) of given entity (selected by entityFilter)in entityList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -611,7 +607,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -621,7 +617,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "entity_id",
+          "name" : "entityId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -631,13 +627,13 @@
             "example" : "67890"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/entity_modify_qry"
+            "$ref" : "#/components/schemas/entityModifyQuery"
           }
         } ],
         "responses" : {
@@ -662,9 +658,9 @@
     "/entity" : {
       "delete" : {
         "tags" : [ "entity" ],
-        "summary" : "delete a predefined entity in entity_list and returns success or error code",
+        "summary" : "delete a predefined entity in entityList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -674,7 +670,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -684,7 +680,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "entity_id",
+          "name" : "entityId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -713,12 +709,12 @@
         }
       }
     },
-    "/entity/list_details" : {
+    "/entity/listDetails" : {
       "get" : {
         "tags" : [ "entity" ],
-        "summary" : "get list of entities filetered by criteria in entity_filter and return info specified by entity_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in entityFilter and return info specified by entityDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -728,7 +724,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -738,13 +734,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/entity_get_details_qry"
+            "$ref" : "#/components/schemas/entityGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -755,7 +751,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/entity_list"
+                    "$ref" : "#/components/schemas/entityList"
                   }
                 }
               }
@@ -779,9 +775,9 @@
     "/resource/new" : {
       "post" : {
         "tags" : [ "resource" ],
-        "summary" : "create a new resource, in resource_list with given resource_details, returns new resource id or  error code",
+        "summary" : "create a new resource, in resourceList with given resourceDetails, returns new resource id or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -791,7 +787,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -801,13 +797,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/resource_new_qry"
+            "$ref" : "#/components/schemas/resourceNewQuery"
           }
         } ],
         "responses" : {
@@ -818,7 +814,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created resource",
-                  "example" : "resource_name:xyz hospital,resource_id:54321"
+                  "example" : "resourceName:xyz hospital,resourceId:54321"
                 }
               }
             }
@@ -841,9 +837,9 @@
     "/resource/modifications" : {
       "put" : {
         "tags" : [ "resource" ],
-        "summary" : "changes values of specific details (as given by resource_details) of given resource (selected by resource_filter)in resource_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by resourceDetails) of given resource (selected by resourceFilter)in resourceList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -853,7 +849,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -863,7 +859,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "resource_id",
+          "name" : "resourceId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -873,13 +869,13 @@
             "example" : "54321"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/resource_modify_qry"
+            "$ref" : "#/components/schemas/resourceModifyQuery"
           }
         } ],
         "responses" : {
@@ -904,9 +900,9 @@
     "/resource" : {
       "delete" : {
         "tags" : [ "resource" ],
-        "summary" : "delete a predefined resource in resource_list and returns success or error code",
+        "summary" : "delete a predefined resource in resourceList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -916,7 +912,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -926,7 +922,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "resource_id",
+          "name" : "resourceId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -955,12 +951,12 @@
         }
       }
     },
-    "/resource/list_details" : {
+    "/resource/listDetails" : {
       "get" : {
         "tags" : [ "resource" ],
-        "summary" : "get list of entities filetered by criteria in resource_filter and return info specified by resource_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in resourceFilter and return info specified by resourceDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -970,7 +966,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -980,13 +976,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/resource_get_details_qry"
+            "$ref" : "#/components/schemas/resourceGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -997,7 +993,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/resource_list"
+                    "$ref" : "#/components/schemas/resourceList"
                   }
                 }
               }
@@ -1021,9 +1017,9 @@
     "/resource/availability" : {
       "get" : {
         "tags" : [ "resource" ],
-        "summary" : "get details of resources matching criteria given by free_resource_filter, that are free(unallocated) in a given date range and entity and returns success or error code",
+        "summary" : "get details of resources matching criteria given by freeResourceFilter, that are free(unallocated) in a given date range and entity and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1033,7 +1029,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1043,13 +1039,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/resource_get_availability_qry"
+            "$ref" : "#/components/schemas/resourceGetAvailabilityQuery"
           }
         } ],
         "responses" : {
@@ -1060,7 +1056,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/free_resource_list"
+                    "$ref" : "#/components/schemas/freeResourceList"
                   }
                 }
               }
@@ -1084,9 +1080,9 @@
     "/subscriber/new" : {
       "post" : {
         "tags" : [ "subscriber" ],
-        "summary" : "create a new subscriber, in subscriber_list with given subscriber_details, returns new subscriber id or  error code",
+        "summary" : "create a new subscriber, in subscriberList with given subscriberDetails, returns new subscriber id or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1096,7 +1092,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1106,13 +1102,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/subscriber_new_qry"
+            "$ref" : "#/components/schemas/subscriberNewQuery"
           }
         } ],
         "responses" : {
@@ -1123,7 +1119,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created subscriber",
-                  "example" : "subscriber_name:xyz hospital,subscriber_id:12345"
+                  "example" : "subscriberName:xyz hospital,subscriberId:12345"
                 }
               }
             }
@@ -1146,9 +1142,9 @@
     "/subscriber/modifications" : {
       "put" : {
         "tags" : [ "subscriber" ],
-        "summary" : "changes values of specific details (as given by subscriber_details) of given subscriber (selected by subscriber_filter)in subscriber_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by subscriberDetails) of given subscriber (selected by subscriberFilter)in subscriberList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1158,7 +1154,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1168,7 +1164,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "subscriber_id",
+          "name" : "subscriberId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1178,13 +1174,13 @@
             "example" : "12345"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/subscriber_modify_qry"
+            "$ref" : "#/components/schemas/subscriberModifyQuery"
           }
         } ],
         "responses" : {
@@ -1209,9 +1205,9 @@
     "/subscriber" : {
       "delete" : {
         "tags" : [ "subscriber" ],
-        "summary" : "delete a predefined subscriber in subscriber_list and returns success or error code",
+        "summary" : "delete a predefined subscriber in subscriberList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1221,7 +1217,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1231,7 +1227,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "subscriber_id",
+          "name" : "subscriberId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1260,12 +1256,12 @@
         }
       }
     },
-    "/subscriber/list_details" : {
+    "/subscriber/listDetails" : {
       "get" : {
         "tags" : [ "subscriber" ],
-        "summary" : "get list of entities filetered by criteria in subscriber_filter and return info specified by subscriber_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in subscriberFilter and return info specified by subscriberDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1275,7 +1271,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1285,13 +1281,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/subscriber_get_details_qry"
+            "$ref" : "#/components/schemas/subscriberGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -1302,7 +1298,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/subscriber_list"
+                    "$ref" : "#/components/schemas/subscriberList"
                   }
                 }
               }
@@ -1326,9 +1322,9 @@
     "/message/new" : {
       "post" : {
         "tags" : [ "message" ],
-        "summary" : "create a new message, in message_list with given message_details, returns new message id or  error code",
+        "summary" : "create a new message, in messageList with given messageDetails, returns new message id or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1338,7 +1334,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1348,13 +1344,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/message_new_qry"
+            "$ref" : "#/components/schemas/messageNewQuery"
           }
         } ],
         "responses" : {
@@ -1365,7 +1361,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created message",
-                  "example" : "message_name:xyz hospital,message_id:1"
+                  "example" : "messageName:xyz hospital,messageId:1"
                 }
               }
             }
@@ -1388,9 +1384,9 @@
     "/message/modifications" : {
       "put" : {
         "tags" : [ "message" ],
-        "summary" : "changes values of specific details (as given by message_details) of given message (selected by message_filter)in message_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by messageDetails) of given message (selected by messageFilter)in messageList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1400,7 +1396,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1410,7 +1406,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "message_id",
+          "name" : "messageId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1420,13 +1416,13 @@
             "example" : "1"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/message_modify_qry"
+            "$ref" : "#/components/schemas/messageModifyQuery"
           }
         } ],
         "responses" : {
@@ -1451,9 +1447,9 @@
     "/message" : {
       "delete" : {
         "tags" : [ "message" ],
-        "summary" : "delete a predefined message in message_list and returns success or error code",
+        "summary" : "delete a predefined message in messageList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1463,7 +1459,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1473,7 +1469,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "message_id",
+          "name" : "messageId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1502,12 +1498,12 @@
         }
       }
     },
-    "/message/list_details" : {
+    "/message/listDetails" : {
       "get" : {
         "tags" : [ "message" ],
-        "summary" : "get list of entities filetered by criteria in message_filter and return info specified by message_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in messageFilter and return info specified by messageDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1517,7 +1513,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1527,13 +1523,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/message_get_details_qry"
+            "$ref" : "#/components/schemas/messageGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -1544,7 +1540,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/message_list"
+                    "$ref" : "#/components/schemas/messageList"
                   }
                 }
               }
@@ -1568,9 +1564,9 @@
     "/affiliation/new" : {
       "post" : {
         "tags" : [ "affiliation" ],
-        "summary" : "create a new affiliation, in affiliation_list with given affiliation_details, returns new affiliation id or  error code",
+        "summary" : "create a new affiliation, in affiliationList with given affiliationDetails, returns new affiliation id or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1580,7 +1576,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1590,13 +1586,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/affiliation_new_qry"
+            "$ref" : "#/components/schemas/affiliationNewQuery"
           }
         } ],
         "responses" : {
@@ -1607,7 +1603,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created affiliation",
-                  "example" : "affiliation_name:xyz hospital,affiliation_id:1"
+                  "example" : "affiliationName:xyz hospital,affiliationId:1"
                 }
               }
             }
@@ -1630,9 +1626,9 @@
     "/affiliation/modifications" : {
       "put" : {
         "tags" : [ "affiliation" ],
-        "summary" : "changes values of specific details (as given by affiliation_details) of given affiliation (selected by affiliation_filter)in affiliation_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by affiliationDetails) of given affiliation (selected by affiliationFilter)in affiliationList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1642,7 +1638,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1652,7 +1648,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "affiliation_id",
+          "name" : "affiliationId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1662,13 +1658,13 @@
             "example" : "1"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/affiliation_modify_qry"
+            "$ref" : "#/components/schemas/affiliationModifyQuery"
           }
         } ],
         "responses" : {
@@ -1693,9 +1689,9 @@
     "/affiliation" : {
       "delete" : {
         "tags" : [ "affiliation" ],
-        "summary" : "delete a predefined affiliation in affiliation_list and returns success or error code",
+        "summary" : "delete a predefined affiliation in affiliationList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1705,7 +1701,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1715,7 +1711,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "affiliation_id",
+          "name" : "affiliationId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1744,12 +1740,12 @@
         }
       }
     },
-    "/affiliation/list_details" : {
+    "/affiliation/listDetails" : {
       "get" : {
         "tags" : [ "affiliation" ],
-        "summary" : "get list of entities filetered by criteria in affiliation_filter and return info specified by affiliation_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in affiliationFilter and return info specified by affiliationDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1759,7 +1755,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1769,13 +1765,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/affiliation_get_details_qry"
+            "$ref" : "#/components/schemas/affiliationGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -1786,7 +1782,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/affiliation_list"
+                    "$ref" : "#/components/schemas/affiliationList"
                   }
                 }
               }
@@ -1807,12 +1803,12 @@
         }
       }
     },
-    "/alert_schedule/new" : {
+    "/alertSchedule/new" : {
       "post" : {
-        "tags" : [ "alert_schedule" ],
-        "summary" : "create a new alert_schedule, in alert_schedule_list with given alert_schedule_details, returns new alert_schedule id or  error code",
+        "tags" : [ "alertSchedule" ],
+        "summary" : "create a new alertSchedule, in alertScheduleList with given alertScheduleDetails, returns new alertSchedule id or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1822,7 +1818,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1832,13 +1828,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/alert_schedule_new_qry"
+            "$ref" : "#/components/schemas/alertScheduleNewQuery"
           }
         } ],
         "responses" : {
@@ -1848,8 +1844,8 @@
               "application/json" : {
                 "schema" : {
                   "type" : "string",
-                  "description" : "ID of created alert_schedule",
-                  "example" : "alert_schedule_name:xyz hospital,alert_schedule_id:1"
+                  "description" : "ID of created alertSchedule",
+                  "example" : "alertScheduleName:xyz hospital,alertScheduleId:1"
                 }
               }
             }
@@ -1869,12 +1865,12 @@
         }
       }
     },
-    "/alert_schedule/modifications" : {
+    "/alertSchedule/modifications" : {
       "put" : {
-        "tags" : [ "alert_schedule" ],
-        "summary" : "changes values of specific details (as given by alert_schedule_details) of given alert_schedule (selected by alert_schedule_filter)in alert_schedule_list and returns success or error code",
+        "tags" : [ "alertSchedule" ],
+        "summary" : "changes values of specific details (as given by alertScheduleDetails) of given alertSchedule (selected by alertScheduleFilter)in alertScheduleList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1884,7 +1880,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1894,7 +1890,7 @@
           },
           "example" : "Organizer"
         }, {
-          "name" : "alert_schedule_id",
+          "name" : "alertScheduleId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1904,18 +1900,18 @@
             "example" : "1"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/alert_schedule_modify_qry"
+            "$ref" : "#/components/schemas/alertScheduleModifyQuery"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "success, alert_schedule updated"
+            "description" : "success, alertSchedule updated"
           },
           "400" : {
             "description" : "Invalid request"
@@ -1932,12 +1928,12 @@
         }
       }
     },
-    "/alert_schedule" : {
+    "/alertSchedule" : {
       "delete" : {
-        "tags" : [ "alert_schedule" ],
-        "summary" : "delete a predefined alert_schedule in alert_schedule_list and returns success or error code",
+        "tags" : [ "alertSchedule" ],
+        "summary" : "delete a predefined alertSchedule in alertScheduleList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1947,7 +1943,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1957,7 +1953,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "alert_schedule_id",
+          "name" : "alertScheduleId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1969,7 +1965,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "success, alert_schedule cancelled"
+            "description" : "success, alertSchedule cancelled"
           },
           "400" : {
             "description" : "Invalid request"
@@ -1986,12 +1982,12 @@
         }
       }
     },
-    "/alert_schedule/list_details" : {
+    "/alertSchedule/listDetails" : {
       "get" : {
-        "tags" : [ "alert_schedule" ],
-        "summary" : "get list of entities filetered by criteria in alert_schedule_filter and return info specified by alert_schedule_details_required with success or error code",
+        "tags" : [ "alertSchedule" ],
+        "summary" : "get list of entities filetered by criteria in alertScheduleFilter and return info specified by alertScheduleDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2001,7 +1997,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2011,24 +2007,24 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/alert_schedule_get_details_qry"
+            "$ref" : "#/components/schemas/alertScheduleGetDetailsQuery"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "success,alert_schedule list",
+            "description" : "success,alertSchedule list",
             "content" : {
               "json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/alert_schedule_list"
+                    "$ref" : "#/components/schemas/alertScheduleList"
                   }
                 }
               }
@@ -2052,9 +2048,9 @@
     "/log/new" : {
       "post" : {
         "tags" : [ "log" ],
-        "summary" : "create a new log, in log_list with given log_details, returns new log id or  error code",
+        "summary" : "create a new log, in logList with given logDetails, returns new logId or  error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2064,7 +2060,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2074,13 +2070,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/log_new_qry"
+            "$ref" : "#/components/schemas/logNewQuery"
           }
         } ],
         "responses" : {
@@ -2091,7 +2087,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created log",
-                  "example" : "log_name:xyz hospital,log_id:1"
+                  "example" : "logName:xyz hospital,logId:1"
                 }
               }
             }
@@ -2114,9 +2110,9 @@
     "/log/modifications" : {
       "put" : {
         "tags" : [ "log" ],
-        "summary" : "changes values of specific details (as given by log_details) of given log (selected by log_filter)in log_list and returns success or error code",
+        "summary" : "changes values of specific details (as given by logDetails) of given log (selected by logFilter)in logList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2126,7 +2122,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2136,7 +2132,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "log_id",
+          "name" : "logId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2146,13 +2142,13 @@
             "example" : "1"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/log_modify_qry"
+            "$ref" : "#/components/schemas/logModifyQuery"
           }
         } ],
         "responses" : {
@@ -2177,9 +2173,9 @@
     "/log" : {
       "delete" : {
         "tags" : [ "log" ],
-        "summary" : "delete a predefined log in log_list and returns success or error code",
+        "summary" : "delete a predefined log in logList and returns success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2189,7 +2185,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2199,7 +2195,7 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "log_id",
+          "name" : "logId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2228,12 +2224,12 @@
         }
       }
     },
-    "/log/list_details" : {
+    "/log/listDetails" : {
       "get" : {
         "tags" : [ "log" ],
-        "summary" : "get list of entities filetered by criteria in log_filter and return info specified by log_details_required with success or error code",
+        "summary" : "get list of entities filetered by criteria in logFilter and return info specified by logDetailsRequired with success or error code",
         "parameters" : [ {
-          "name" : "requestor_id",
+          "name" : "requestorId",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2243,7 +2239,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "request_token",
+          "name" : "requestToken",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2253,13 +2249,13 @@
             "example" : "Organizer"
           }
         }, {
-          "name" : "qry",
+          "name" : "query",
           "in" : "query",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/log_get_details_qry"
+            "$ref" : "#/components/schemas/logGetDetailsQuery"
           }
         } ],
         "responses" : {
@@ -2270,7 +2266,7 @@
                 "schema" : {
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/log_list"
+                    "$ref" : "#/components/schemas/logList"
                   }
                 }
               }
@@ -2294,22 +2290,22 @@
   },
   "components" : {
     "schemas" : {
-      "entity_list" : {
+      "entityList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "entity_id" : {
+            "entityId" : {
               "type" : "string",
               "example" : "67890"
             },
             "details" : {
-              "$ref" : "#/components/schemas/entity_details"
+              "$ref" : "#/components/schemas/entityDetails"
             }
           }
         }
       },
-      "entity_details" : {
+      "entityDetails" : {
         "type" : "object",
         "properties" : {
           "category" : {
@@ -2335,10 +2331,10 @@
           }
         }
       },
-      "entity_filter" : {
+      "entityFilter" : {
         "type" : "object",
         "properties" : {
-          "entity_id" : {
+          "entityId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
@@ -2368,10 +2364,10 @@
           }
         }
       },
-      "entity_details_required" : {
+      "entityDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "entity_id" : {
+          "entityId" : {
             "type" : "boolean",
             "example" : false
           },
@@ -2397,98 +2393,98 @@
           }
         }
       },
-      "appointment_creation_details" : {
+      "appointmentCreationDetails" : {
         "type" : "object",
         "properties" : {
           "exclusive" : {
             "type" : "boolean",
             "example" : "true"
           },
-          "event_ids" : {
+          "eventIds" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             },
             "example" : "[1]"
           },
-          "participant_type" : {
+          "participantType" : {
             "type" : "string",
             "example" : "subscriber"
           },
-          "participant_id" : {
+          "participantId" : {
             "type" : "string",
             "example" : "12345"
           },
-          "participant_entity_id" : {
+          "participantEntityId" : {
             "type" : "string",
             "example" : "67890"
           }
         }
       },
-      "appointment_list" : {
+      "appointmentList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "appointment_id" : {
+            "appointmentId" : {
               "type" : "string",
               "example" : "1"
             },
             "details" : {
-              "$ref" : "#/components/schemas/appointment_details"
+              "$ref" : "#/components/schemas/appointmentDetails"
             }
           }
         }
       },
-      "appointment_details" : {
-  "type" : "object",
-        "properties" : {
-          "exclusive" : {
-            "type" : "boolean",
-            "example" : "true"
-          },
-          "event_id" : {
-            "type" : "string",
-            "example" : "1"
-          },
-          "participant_type" : {
-            "type" : "string",
-            "example" : "subscriber"
-          },
-          "participant_id" : {
-            "type" : "string",
-            "example" : "12345"
-          },
-          "status_id" : {
-            "type" : "string",
-            "example" : "confirmed"
-          },
-          "participant_entity_id" : {
-            "type" : "string",
-            "example" : "67890"
-          }
-        }
-      },
-      "appointment_filter" : {
+      "appointmentDetails" : {
         "type" : "object",
         "properties" : {
           "exclusive" : {
             "type" : "boolean",
             "example" : "true"
           },
-          "appointment_id" : {
+          "eventId" : {
             "type" : "string",
             "example" : "1"
           },
-          "participant_type" : {
+          "participantType" : {
             "type" : "string",
             "example" : "subscriber"
           },
-          "participant_id" : {
+          "participantId" : {
             "type" : "string",
             "example" : "12345"
           },
-          "participant_entity_id" : {
+          "statusId" : {
+            "type" : "string",
+            "example" : "confirmed"
+          },
+          "participantEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        }
+      },
+      "appointmentFilter" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "appointmentId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "participantType" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "participantId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "participantEntityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -2508,26 +2504,26 @@
           }
         }
       },
-      "appointment_details_required" : {
+      "appointmentDetailsRequired" : {
         "type" : "object",
         "properties" : {
           "exclusive" : {
             "type" : "boolean",
             "example" : "true"
           },
-          "appointment_id" : {
+          "appointmentId" : {
             "type" : "boolean",
             "example" : true
           },
-          "event_details" : {
+          "eventDetails" : {
             "type" : "boolean",
             "example" : true
           },
-          "participant_type" : {
+          "participantType" : {
             "type" : "boolean",
             "example" : true
           },
-          "participant_id" : {
+          "participantId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -2535,28 +2531,28 @@
             "type" : "boolean",
             "example" : true
           },
-          "participant_entity_id" : {
+          "participantEntityId" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "resource_list" : {
+      "resourceList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "resource_id" : {
+            "resourceId" : {
               "type" : "string",
               "example" : "54321"
             },
             "details" : {
-              "$ref" : "#/components/schemas/resource_details"
+              "$ref" : "#/components/schemas/resourceDetails"
             }
           }
         }
       },
-      "resource_details" : {
+      "resourceDetails" : {
         "type" : "object",
         "properties" : {
           "name" : {
@@ -2575,26 +2571,26 @@
             "type" : "string",
             "example" : "doctor1@xyz.com"
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "psrk@gmail.com"
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "string",
             "example" : "phone"
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.doctor1.com"
           }
         }
       },
-      "resource_filter" : {
+      "resourceFilter" : {
         "type" : "object",
         "properties" : {
-          "resource_id" : {
+          "resourceId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
@@ -2617,26 +2613,26 @@
             "type" : "string",
             "example" : "abc@gmail.com"
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.doctor1.com"
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "string",
             "example" : " phone"
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.doctor1.com"
           }
         }
       },
-      "resource_details_required" : {
+      "resourceDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "resource_id" : {
+          "resourceId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -2656,36 +2652,36 @@
             "type" : "boolean",
             "example" : true
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "boolean",
             "example" : true
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "boolean",
             "example" : true
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "subscriber_list" : {
+      "subscriberList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "subscriber_id" : {
+            "subscriberId" : {
               "type" : "string",
               "example" : "12345"
             },
             "details" : {
-              "$ref" : "#/components/schemas/subscriber_details"
+              "$ref" : "#/components/schemas/subscriberDetails"
             }
           }
         }
       },
-      "subscriber_details" : {
+      "subscriberDetails" : {
         "type" : "object",
         "properties" : {
           "name" : {
@@ -2704,26 +2700,26 @@
             "type" : "string",
             "example" : "abc@gmail.com"
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.abc.com"
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "string",
             "example" : "phone"
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.abc.com"
           }
         }
       },
-      "subscriber_filter" : {
+      "subscriberFilter" : {
         "type" : "object",
         "properties" : {
-          "subscriber_id" : {
+          "subscriberId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
@@ -2746,26 +2742,26 @@
             "type" : "string",
             "example" : "abc@gmail.com"
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.abc.com"
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "string",
             "example" : " phone"
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "string",
             "format" : "url",
             "example" : "www.abc.com"
           }
         }
       },
-      "subscriber_details_required" : {
+      "subscriberDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "subscriber_id" : {
+          "subscriberId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -2785,21 +2781,21 @@
             "type" : "boolean",
             "example" : true
           },
-          "alert_url" : {
+          "alertUrl" : {
             "type" : "boolean",
             "example" : true
           },
-          "alert_preference" : {
+          "alertPreference" : {
             "type" : "boolean",
             "example" : true
           },
-          "status_poll_url" : {
+          "statusPollUrl" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "event_creation_details" : {
+      "eventCreationDetails" : {
         "type" : "object",
         "properties" : {
           "name" : {
@@ -2814,7 +2810,7 @@
             "type" : "string",
             "example" : "doctor_consultation"
           },
-          "host_entity_id" : {
+          "hostEntityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -2841,7 +2837,7 @@
             "format" : "date-time",
             "example" : "2018-02-15T11:10:00"
           },
-          "subscriber_limit" : {
+          "subscriberLimit" : {
             "type" : "string",
             "example" : "1"
           },
@@ -2858,22 +2854,22 @@
           }
         }
       },
-      "event_list" : {
+      "eventList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "event_id" : {
+            "eventId" : {
               "type" : "string",
               "example" : "12345"
             },
             "details" : {
-              "$ref" : "#/components/schemas/event_details"
+              "$ref" : "#/components/schemas/eventDetails"
             }
           }
         }
       },
-      "event_details" : {
+      "eventDetails" : {
         "type" : "object",
         "properties" : {
           "name" : {
@@ -2888,7 +2884,7 @@
             "type" : "string",
             "example" : "doctor_consultation"
           },
-          "host_entity_id" : {
+          "hostEntityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -2907,7 +2903,7 @@
             "format" : "date-time",
             "example" : "2018-02-15T11:10:00"
           },
-          "subscriber_limit" : {
+          "subscriberLimit" : {
             "type" : "string",
             "example" : "1"
           },
@@ -2924,10 +2920,10 @@
           }
         }
       },
-      "event_filter" : {
+      "eventFilter" : {
         "type" : "object",
         "properties" : {
-          "event_id" : {
+          "eventId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
@@ -2946,11 +2942,11 @@
             "type" : "string",
             "example" : "opd_physician_consultation"
           },
-          "host_entity_id" : {
+          "hostEntityId" : {
             "type" : "string",
             "example" : "67890"
           },
-          "subscriber_limit" : {
+          "subscriberLimit" : {
             "type" : "string",
             "example" : "1"
           },
@@ -2973,10 +2969,10 @@
           }
         }
       },
-      "event_details_required" : {
+      "eventDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "event_id" : {
+          "eventId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -2992,7 +2988,7 @@
             "type" : "boolean",
             "example" : true
           },
-          "host_entity_id" : {
+          "hostEntityId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -3008,7 +3004,7 @@
             "type" : "boolean",
             "example" : true
           },
-          "subscriber_limit" : {
+          "subscriberLimit" : {
             "type" : "boolean",
             "example" : true
           },
@@ -3022,76 +3018,76 @@
           }
         }
       },
-      "affiliation_list" : {
+      "affiliationList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "affiliation_id" : {
+            "affiliationId" : {
               "type" : "string",
               "example" : "1"
             },
             "details" : {
-              "$ref" : "#/components/schemas/affiliation_details"
+              "$ref" : "#/components/schemas/affiliationDetails"
             }
           }
         }
       },
-      "affiliation_details" : {
+      "affiliationDetails" : {
         "type" : "object",
         "properties" : {
-          "resource_id" : {
+          "resourceId" : {
             "type" : "string",
             "example" : "12345"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
-          "resource_category" : {
+          "resourceCategory" : {
             "type" : "string",
             "example" : "physician"
           },
-          "work_days_hours" : {
-            "$ref" : "#/components/schemas/days_hours"
+          "workDaysHours" : {
+            "$ref" : "#/components/schemas/daysHours"
           }
         }
       },
-      "days_hours" : {
+      "daysHours" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "day_of_week" : {
+            "dayOfWeek" : {
               "type" : "string",
               "example" : "[monday"
             },
-            "start_time" : {
+            "startTime" : {
               "type" : "string",
               "example" : "09:00:00"
             },
-            "end_time" : {
+            "endTime" : {
               "type" : "string",
               "example" : "17:00:00"
             }
           }
         }
       },
-      "affiliation_filter" : {
+      "affiliationFilter" : {
         "type" : "object",
         "properties" : {
-          "affiliation_id" : {
+          "affiliationId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             },
             "example" : "[1,2]"
           },
-          "resource_id" : {
+          "resourceId" : {
             "type" : "string",
             "example" : "12345"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -3111,18 +3107,18 @@
           }
         }
       },
-      "affiliation_details_required" : {
+      "affiliationDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "affiliation_id" : {
+          "affiliationId" : {
             "type" : "boolean",
             "example" : true
           },
-          "resource_id" : {
+          "resourceId" : {
             "type" : "boolean",
             "example" : true
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -3130,68 +3126,68 @@
             "type" : "boolean",
             "example" : true
           },
-          "work_days_hours" : {
+          "workDaysHours" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "alert_schedule_list" : {
+      "alertScheduleList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "alert_schedule_id" : {
+            "alertScheduleId" : {
               "type" : "string",
               "example" : "1"
             },
             "details" : {
-              "$ref" : "#/components/schemas/alert_schedule_details"
+              "$ref" : "#/components/schemas/alertScheduleDetails"
             }
           }
         }
       },
-      "alert_schedule_details" : {
+      "alertScheduleDetails" : {
         "type" : "object",
         "properties" : {
-          "event_id" : {
+          "eventId" : {
             "type" : "string",
             "example" : "12345"
           },
-          "target_category" : {
+          "targetCategory" : {
             "type" : "string",
             "example" : "subscriber"
           },
-          "message_id" : {
+          "messageId" : {
             "type" : "string",
             "example" : "1"
           },
-          "alert_datetime" : {
+          "alertDatetime" : {
             "type" : "string",
             "format" : "date-time",
             "example" : "2018-02-15T09:00:00"
           }
         }
       },
-      "alert_schedule_filter" : {
+      "alertScheduleFilter" : {
         "type" : "object",
         "properties" : {
-          "alert_schedule_id" : {
+          "alertScheduleId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             },
             "example" : "[1,2]"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
-          "target_category" : {
+          "targetCategory" : {
             "type" : "string",
             "example" : "subscriber"
           },
-          "message_id" : {
+          "messageId" : {
             "type" : "string",
             "example" : "1"
           },
@@ -3207,46 +3203,46 @@
           }
         }
       },
-      "alert_schedule_details_required" : {
+      "alertScheduleDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "alert_schedule_id" : {
+          "alertScheduleId" : {
             "type" : "boolean",
             "example" : true
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "boolean",
             "example" : true
           },
-          "message_id" : {
+          "messageId" : {
             "type" : "boolean",
             "example" : true
           },
-          "alert_datetime" : {
+          "alertDatetime" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "message_list" : {
+      "messageList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "message_id" : {
+            "messageId" : {
               "type" : "string",
               "example" : "1"
             },
             "details" : {
-              "$ref" : "#/components/schemas/message_details"
+              "$ref" : "#/components/schemas/messageDetails"
             }
           }
         }
       },
-      "message_details" : {
+      "messageDetails" : {
         "type" : "object",
         "properties" : {
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -3254,23 +3250,23 @@
             "type" : "string",
             "example" : "reminder"
           },
-          "message_body" : {
+          "messageBody" : {
             "type" : "string",
             "example" : "you have doctor consultation today"
           }
         }
       },
-      "message_filter" : {
+      "messageFilter" : {
         "type" : "object",
         "properties" : {
-          "message_id" : {
+          "messageId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             },
             "example" : "[1,2]"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -3278,20 +3274,20 @@
             "type" : "string",
             "example" : "reminder"
           },
-          "message_body" : {
+          "messageBody" : {
             "type" : "string",
             "example" : "you have doctor consultation today"
           }
         }
       },
-      "message_details_required" : {
+      "messageDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "message_id" : {
+          "messageId" : {
             "type" : "boolean",
             "example" : true
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "boolean",
             "example" : true
           },
@@ -3299,43 +3295,43 @@
             "type" : "boolean",
             "example" : true
           },
-          "message_body" : {
+          "messageBody" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "log_list" : {
+      "logList" : {
         "type" : "array",
         "items" : {
           "type" : "object",
           "properties" : {
-            "log_id" : {
+            "logId" : {
               "type" : "string",
               "example" : "1"
             },
             "details" : {
-              "$ref" : "#/components/schemas/log_details"
+              "$ref" : "#/components/schemas/logDetails"
             }
           }
         }
       },
-      "log_details" : {
+      "logDetails" : {
         "type" : "object",
         "properties" : {
-          "logger_role" : {
+          "loggerRole" : {
             "type" : "string",
             "example" : "resource"
           },
-          "logger_id" : {
+          "loggerId" : {
             "type" : "string",
             "example" : "1"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
-          "log_category" : {
+          "logCategory" : {
             "type" : "string",
             "example" : "attendance"
           },
@@ -3344,23 +3340,23 @@
             "format" : "date-time",
             "example" : "2018-02-15T11:00:00"
           },
-          "log_data" : {
+          "logData" : {
             "type" : "string",
-            "example" : "event_id:12345,subscriber_id:1,token:a2s3x2fer,status:attended"
+            "example" : "eventId:12345,subscriberId:1,token:a2s3x2fer,status:attended"
           }
         }
       },
-      "log_filter" : {
+      "logFilter" : {
         "type" : "object",
         "properties" : {
-          "log_id" : {
+          "logId" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             },
             "example" : "[1,2]"
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -3380,26 +3376,26 @@
           }
         }
       },
-      "log_details_required" : {
+      "logDetailsRequired" : {
         "type" : "object",
         "properties" : {
-          "log_id" : {
+          "logId" : {
             "type" : "boolean",
             "example" : true
           },
-          "logger_category" : {
+          "loggerCategory" : {
             "type" : "boolean",
             "example" : true
           },
-          "logger_id" : {
+          "loggerId" : {
             "type" : "boolean",
             "example" : true
           },
-          "entity_id" : {
+          "entityId" : {
             "type" : "boolean",
             "example" : true
           },
-          "log_category" : {
+          "logCategory" : {
             "type" : "boolean",
             "example" : true
           },
@@ -3407,30 +3403,30 @@
             "type" : "boolean",
             "example" : true
           },
-          "log_data" : {
+          "logData" : {
             "type" : "boolean",
             "example" : true
           }
         }
       },
-      "free_resource_list" : {
+      "freeResourceList" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/free_resource_details"
+          "$ref" : "#/components/schemas/freeResourceDetails"
         }
       },
-      "free_resource_details" : {
+      "freeResourceDetails" : {
         "type" : "object",
         "properties" : {
-          "resource_id" : {
+          "resourceId" : {
             "type" : "string",
             "example" : "1"
           },
-          "resource_name" : {
+          "resourceName" : {
             "type" : "string",
             "example" : "abc"
           },
-          "free_slots" : {
+          "freeSlots" : {
             "type" : "array",
             "items" : {
               "type" : "string",
@@ -3439,14 +3435,14 @@
           }
         }
       },
-      "free_resource_filter" : {
+      "freeResourceFilter" : {
         "type" : "object",
         "properties" : {
           "category" : {
             "type" : "string",
             "example" : "doctor"
           },
-          "Entity_id" : {
+          "entityId" : {
             "type" : "string",
             "example" : "67890"
           },
@@ -3460,7 +3456,7 @@
             "format" : "date-time",
             "example" : "2018-02-18T13:30:00"
           },
-          "resource_id" : {
+          "resourceId" : {
             "type" : "string",
             "example" : "1"
           }
@@ -3503,254 +3499,254 @@
           }
         }
       },
-      "event_new_qry" : {
+      "eventNewQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/event_creation_details"
+            "$ref" : "#/components/schemas/eventCreationDetails"
           }
         }
       },
-      "event_modify_qry" : {
+      "eventModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/event_details"
+            "$ref" : "#/components/schemas/eventDetails"
           }
         }
       },
-      "event_get_details_qry" : {
+      "eventGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "event_filter" : {
-            "$ref" : "#/components/schemas/event_filter"
+          "eventFilter" : {
+            "$ref" : "#/components/schemas/eventFilter"
           },
-          "event_details_required" : {
-            "$ref" : "#/components/schemas/event_details_required"
+          "eventDetailsRequired" : {
+            "$ref" : "#/components/schemas/eventDetailsRequired"
           }
         }
       },
-      "entity_new_qry" : {
+      "entityNewQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/entity_details"
+            "$ref" : "#/components/schemas/entityDetails"
           }
         }
       },
-      "entity_modify_qry" : {
+      "entityModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/entity_details"
+            "$ref" : "#/components/schemas/entityDetails"
           }
         }
       },
-      "entity_get_details_qry" : {
+      "entityGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "entity_filter" : {
-            "$ref" : "#/components/schemas/entity_filter"
+          "entityFilter" : {
+            "$ref" : "#/components/schemas/entityFilter"
           },
-          "entity_details_required" : {
-            "$ref" : "#/components/schemas/entity_details_required"
+          "entityDetailsRequired" : {
+            "$ref" : "#/components/schemas/entityDetailsRequired"
           }
         }
       },
-      "resource_new_qry" : {
+      "resourceNewQuery" : {
         "type" : "object",
         "properties" : {
-          "resource_details" : {
-            "$ref" : "#/components/schemas/resource_details"
+          "resourceDetails" : {
+            "$ref" : "#/components/schemas/resourceDetails"
           }
         }
       },
-      "resource_modify_qry" : {
-        "type" : "object",
-        "properties" : {
-          "details" : {
-            "$ref" : "#/components/schemas/resource_details"
-          }
-        }
-      },
-      "resource_get_details_qry" : {
-        "type" : "object",
-        "properties" : {
-          "resource_filter" : {
-            "$ref" : "#/components/schemas/resource_filter"
-          },
-          "resource_details_required" : {
-            "$ref" : "#/components/schemas/resource_details_required"
-          }
-        }
-      },
-      "resource_get_availability_qry" : {
-        "type" : "object",
-        "properties" : {
-          "free_resource_filter" : {
-            "$ref" : "#/components/schemas/free_resource_filter"
-          }
-        }
-      },
-      "subscriber_new_qry" : {
-        "type" : "object",
-        "properties" : {
-          "subscriber_details" : {
-            "$ref" : "#/components/schemas/subscriber_details"
-          }
-        }
-      },
-      "subscriber_modify_qry" : {
+      "resourceModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/subscriber_details"
+            "$ref" : "#/components/schemas/resourceDetails"
           }
         }
       },
-      "subscriber_get_details_qry" : {
+      "resourceGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "subscriber_filter" : {
-            "$ref" : "#/components/schemas/subscriber_filter"
+          "resourceFilter" : {
+            "$ref" : "#/components/schemas/resourceFilter"
           },
-          "subscriber_details_required" : {
-            "$ref" : "#/components/schemas/subscriber_details_required"
+          "resourceDetailsRequired" : {
+            "$ref" : "#/components/schemas/resourceDetailsRequired"
           }
         }
       },
-      "message_new_qry" : {
+      "resourceGetAvailabilityQuery" : {
         "type" : "object",
         "properties" : {
-          "message_details" : {
-            "$ref" : "#/components/schemas/message_details"
+          "freeResourceFilter" : {
+            "$ref" : "#/components/schemas/freeResourceFilter"
           }
         }
       },
-      "message_modify_qry" : {
+      "subscriberNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "subscriberDetails" : {
+            "$ref" : "#/components/schemas/subscriberDetails"
+          }
+        }
+      },
+      "subscriberModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/message_details"
+            "$ref" : "#/components/schemas/subscriberDetails"
           }
         }
       },
-      "message_get_details_qry" : {
+      "subscriberGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "message_filter" : {
-            "$ref" : "#/components/schemas/message_filter"
+          "subscriberFilter" : {
+            "$ref" : "#/components/schemas/subscriberFilter"
           },
-          "message_details_required" : {
-            "$ref" : "#/components/schemas/message_details_required"
+          "subscriberDetailsRequired" : {
+            "$ref" : "#/components/schemas/subscriberDetailsRequired"
           }
         }
       },
-      "affiliation_new_qry" : {
+      "messageNewQuery" : {
         "type" : "object",
         "properties" : {
-          "affiliation_details" : {
-            "$ref" : "#/components/schemas/affiliation_details"
+          "messageDetails" : {
+            "$ref" : "#/components/schemas/messageDetails"
           }
         }
       },
-      "affiliation_modify_qry" : {
+      "messageModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/affiliation_details"
+            "$ref" : "#/components/schemas/messageDetails"
           }
         }
       },
-      "affiliation_get_details_qry" : {
+      "messageGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "affiliation_filter" : {
-            "$ref" : "#/components/schemas/affiliation_filter"
+          "messageFilter" : {
+            "$ref" : "#/components/schemas/messageFilter"
           },
-          "affiliation_details_required" : {
-            "$ref" : "#/components/schemas/affiliation_details_required"
+          "messageDetailsRequired" : {
+            "$ref" : "#/components/schemas/messageDetailsRequired"
           }
         }
       },
-      "alert_schedule_new_qry" : {
+      "affiliationNewQuery" : {
         "type" : "object",
         "properties" : {
-          "alert_schedule_details" : {
-            "$ref" : "#/components/schemas/alert_schedule_details"
+          "affiliationDetails" : {
+            "$ref" : "#/components/schemas/affiliationDetails"
           }
         }
       },
-      "alert_schedule_modify_qry" : {
+      "affiliationModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/alert_schedule_details"
+            "$ref" : "#/components/schemas/affiliationDetails"
           }
         }
       },
-      "alert_schedule_get_details_qry" : {
+      "affiliationGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "alert_schedule_filter" : {
-            "$ref" : "#/components/schemas/alert_schedule_filter"
+          "affiliationFilter" : {
+            "$ref" : "#/components/schemas/affiliationFilter"
           },
-          "alert_schedule_details_required" : {
-            "$ref" : "#/components/schemas/alert_schedule_details_required"
+          "affiliationDetailsRequired" : {
+            "$ref" : "#/components/schemas/affiliationDetailsRequired"
           }
         }
       },
-      "log_new_qry" : {
+      "alertScheduleNewQuery" : {
         "type" : "object",
         "properties" : {
-          "log_details" : {
-            "$ref" : "#/components/schemas/log_details"
+          "alertScheduleDetails" : {
+            "$ref" : "#/components/schemas/alertScheduleDetails"
           }
         }
       },
-      "log_modify_qry" : {
+      "alertScheduleModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/log_details"
+            "$ref" : "#/components/schemas/alertScheduleDetails"
           }
         }
       },
-      "log_get_details_qry" : {
+      "alertScheduleGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "log_filter" : {
-            "$ref" : "#/components/schemas/log_filter"
+          "alertScheduleFilter" : {
+            "$ref" : "#/components/schemas/alertScheduleFilter"
           },
-          "log_details_required" : {
-            "$ref" : "#/components/schemas/log_details_required"
+          "alertScheduleDetailsRequired" : {
+            "$ref" : "#/components/schemas/alertScheduleDetailsRequired"
           }
         }
       },
-      "appointment_new_qry" : {
+      "logNewQuery" : {
         "type" : "object",
         "properties" : {
-          "appointment_details" : {
-            "$ref" : "#/components/schemas/appointment_creation_details"
+          "logDetails" : {
+            "$ref" : "#/components/schemas/logDetails"
           }
         }
       },
-      "appointment_modify_qry" : {
+      "logModifyQuery" : {
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/appointment_details"
+            "$ref" : "#/components/schemas/logDetails"
           }
         }
       },
-      "appointment_get_details_qry" : {
+      "logGetDetailsQuery" : {
         "type" : "object",
         "properties" : {
-          "appointment_filter" : {
-            "$ref" : "#/components/schemas/appointment_filter"
+          "logFilter" : {
+            "$ref" : "#/components/schemas/logFilter"
           },
-          "appointment_details_required" : {
-            "$ref" : "#/components/schemas/appointment_details_required"
+          "logDetailsRequired" : {
+            "$ref" : "#/components/schemas/logDetailsRequired"
+          }
+        }
+      },
+      "appointmentNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "appointmentDetails" : {
+            "$ref" : "#/components/schemas/appointmentCreationDetails"
+          }
+        }
+      },
+      "appointmentModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/appointmentDetails"
+          }
+        }
+      },
+      "appointmentGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "appointmentFilter" : {
+            "$ref" : "#/components/schemas/appointmentFilter"
+          },
+          "appointmentDetailsRequired" : {
+            "$ref" : "#/components/schemas/appointmentDetailsRequired"
           }
         }
       }
